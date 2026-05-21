@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>次世代AI超智能选题工具</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎰</text></svg>">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <span class="icon">🎰</span>
+            <h1>次世代AI超智能选题工具</h1>
+        </div>
+
+        <!-- Slot Machine -->
+        <div class="slot-machine" id="slotMachine">
+            <div class="slot-windows">
+                <div class="slot-window-wrapper">
+                    <span class="slot-label">人物 <button class="slot-edit-btn" data-pool="person" title="编辑人物集合"><img src="https://img.icons8.com/?size=16&id=zqRKVWtC1VeY&format=png&color=000000" alt="编辑" style="vertical-align:middle;"></button></span>
+                    <div class="slot-window" id="slotPerson">点击按钮开始</div>
+                </div>
+                <div class="slot-window-wrapper">
+                    <span class="slot-label">事件 <button class="slot-edit-btn" data-pool="event" title="编辑事件集合"><img src="https://img.icons8.com/?size=16&id=zqRKVWtC1VeY&format=png&color=000000" alt="编辑" style="vertical-align:middle;"></button></span>
+                    <div class="slot-window" id="slotEvent">点击按钮开始</div>
+                </div>
+                <div class="slot-window-wrapper">
+                    <span class="slot-label">选择 <button class="slot-edit-btn" data-pool="choice" title="编辑选择集合"><img src="https://img.icons8.com/?size=16&id=zqRKVWtC1VeY&format=png&color=000000" alt="编辑" style="vertical-align:middle;"></button></span>
+                    <div class="slot-window" id="slotChoice">点击按钮开始</div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="draft-btn" id="spinOnceBtn">约稿1次</button>
+                <button class="draft-btn" id="spinFiveBtn">约稿5次</button>
+            </div>
+        </div>
+
+        <!-- Output -->
+        <div class="output-section" id="outputSection">
+            <div class="output-header">
+                <h3>📋 约稿结果 <span class="output-count" id="outputCount">0 条</span></h3>
+                <button class="output-clear-btn" id="clearBtn">清空记录</button>
+            </div>
+            <div class="output-list" id="outputList">
+                <div class="output-empty">点击上方按钮，生成第一条标题</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay (hidden by default) -->
+    <div class="modal-overlay" id="modalOverlay" style="display:none;">
+        <div class="modal" id="modalBox">
+            <div class="modal-header">
+                <h3 id="modalTitle">编辑词库</h3>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <textarea id="modalTextarea" placeholder="每行一个词条"></textarea>
+            <div class="modal-hint">每行一个词条，保存后即时生效</div>
+            <div class="modal-actions">
+                <button class="btn-reset" id="modalReset">↺ 恢复默认</button>
+                <button class="btn-cancel" id="modalCancel">取消</button>
+                <button class="btn-save" id="modalSave">✓ 保存</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <a href="https://github.com/3plus10i/draftslot " target="_blank" rel="noopener">仓库</a>
+        <span class="sep">|</span>
+        <a href="javascript:void(0)" id="aboutLink">关于</a>
+    </footer>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="aboutOverlay" style="display:none;">
+        <div class="modal" id="aboutBox">
+            <div class="modal-header">
+                <h3>关于</h3>
+                <button class="modal-close" id="aboutClose">✕</button>
+            </div>
+            <div class="about-content">
+                <p><strong>次世代AI超智能选题工具</strong></p>
+                <p>点击按钮，生成一份非虚构写作博文标题。</p>
+                <p>本项目仅供娱乐。</p>
+                <p>页面上出现的杂志图标和相关标语仅作视觉参考，与具体文案内容无关。版权属于其所有者，商用请联系原作者</p>
+            </div>
+        </div>
+    </div>
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmOverlay" style="display:none;">
+        <div class="modal confirm-modal" id="confirmBox">
+            <div class="modal-header">
+                <h3 id="confirmTitle">确认操作</h3>
+                <button class="modal-close" id="confirmClose">✕</button>
+            </div>
+            <p id="confirmMessage" class="confirm-message"></p>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="confirmCancel">取消</button>
+                <button class="btn-save" id="confirmOk">确定</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
