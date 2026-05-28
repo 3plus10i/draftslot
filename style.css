@@ -262,6 +262,11 @@ body {
     justify-content: space-between;
     gap: 12px;
 }
+.output-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 .output-header h3 {
     font-size: 14px;
     font-weight: 700;
@@ -278,6 +283,22 @@ body {
     background: var(--slot-bg);
     padding: 2px 10px;
     border-radius: var(--radius-lg);
+}
+.output-copy-btn {
+    font-size: 12px;
+    color: var(--accent);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    letter-spacing: 0.5px;
+    transition: all var(--transition);
+    font-family: var(--font);
+}
+.output-copy-btn:hover {
+    background: #eff6ff;
+    color: var(--accent-hover);
 }
 .output-clear-btn {
     font-size: 12px;

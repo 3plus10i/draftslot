@@ -146,6 +146,7 @@ const spinFiveBtn = document.getElementById('spinFiveBtn');
 const outputList = document.getElementById('outputList');
 const outputCount = document.getElementById('outputCount');
 const clearBtn = document.getElementById('clearBtn');
+const copyBtn = document.getElementById('copyBtn');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalTitle = document.getElementById('modalTitle');
 const modalTextarea = document.getElementById('modalTextarea');
@@ -377,6 +378,27 @@ function hideConfirm() {
 // ────────────────────────────
 spinOnceBtn.addEventListener('click', () => spinMultiple(1));
 spinFiveBtn.addEventListener('click', () => spinMultiple(5));
+
+copyBtn.addEventListener('click', () => {
+    if (results.length === 0) {
+        const original = copyBtn.textContent;
+        copyBtn.textContent = '啥也没有啊！';
+        setTimeout(() => { copyBtn.textContent = original; }, 1500);
+        return;
+    }
+    let text = results.map((r, i) => {
+        return `#${i + 1} [ ${r.person} / ${r.event} / ${r.choice} ]\n${r.title}`;
+    }).join('\n');
+    // 追加小尾巴
+    text += '\n来自随机选题工具DraftSlot：https://draftslot.3plus10i.top/'
+    navigator.clipboard.writeText(text).then(() => {
+        const original = copyBtn.textContent;
+        copyBtn.textContent = '已复制!';
+        setTimeout(() => { copyBtn.textContent = original; }, 1500);
+    }).catch(() => {
+        alert('复制失败，请重试');
+    });
+});
 
 clearBtn.addEventListener('click', () => {
     if (isSpinning) return;
