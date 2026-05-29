@@ -258,7 +258,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 30%, #fff8d788 40%, #fff8d788 50%, transparent 60%);
+    background: linear-gradient(115deg, transparent 30%, #fffcedbe 40%, #fffcedbe 50%, transparent 60%);
     transform: translateX(-100%);
     animation: btnShine 4s ease-in-out infinite;
 }
@@ -601,14 +601,14 @@ body {
 }
 
 /* About Modal Content */
+/* Markdown 样式由 md-renderer.js 统一注入，此处保留容器基础样式 */
 .about-content {
     font-size: 14px;
     line-height: 1.8;
     color: var(--text);
     padding: 4px 0;
-}
-.about-content p {
-    margin-bottom: 10px;
+    overflow-y: auto;
+    min-height: 0;
 }
 /* .about-content p:last-child {
     margin-bottom: 0;
