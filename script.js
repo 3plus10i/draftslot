@@ -49,6 +49,7 @@ const defaultPools = {
 const titleTemplates = [
     '《{person}决定去{choice}》',
     '《{person}，困在{event}里》',
+    '《被{event}困住的{person}》',
     '《一个{person}与{event}的对话》',
     '《{event}不欢迎{person}》',
     '《{person}在{event}之后{choice}》',
@@ -380,10 +381,10 @@ spinOnceBtn.addEventListener('click', () => spinMultiple(1));
 spinFiveBtn.addEventListener('click', () => spinMultiple(5));
 
 copyBtn.addEventListener('click', () => {
+    const feedbackEl = copyBtn.querySelector('.btn-text-full');
     if (results.length === 0) {
-        const original = copyBtn.textContent;
-        copyBtn.textContent = '啥也没有啊！';
-        setTimeout(() => { copyBtn.textContent = original; }, 1500);
+        feedbackEl.textContent = '啥也没有啊！';
+        setTimeout(() => { feedbackEl.textContent = '复制结果'; }, 1500);
         return;
     }
     let text = results.map((r, i) => {
@@ -392,9 +393,8 @@ copyBtn.addEventListener('click', () => {
     // 追加小尾巴
     text += '\n来自随机选题工具DraftSlot：https://draftslot.3plus10i.top/'
     navigator.clipboard.writeText(text).then(() => {
-        const original = copyBtn.textContent;
-        copyBtn.textContent = '已复制!';
-        setTimeout(() => { copyBtn.textContent = original; }, 1500);
+        feedbackEl.textContent = '已复制!';
+        setTimeout(() => { feedbackEl.textContent = '复制结果'; }, 1500);
     }).catch(() => {
         alert('复制失败，请重试');
     });

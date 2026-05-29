@@ -111,7 +111,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 0;
     flex: 1;
     min-width: 140px;
     max-width: 200px;
@@ -222,18 +222,18 @@ body {
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 2px;
-    border: none;
-    border-radius: var(--radius-lg);
+    border: 1px solid #9b9b9b;
+    border-radius: 9999px;
     cursor: pointer;
-    background: var(--accent);
-    color: #fff;
+    background: #fafafa;
+    color: #3d3d3d;
     box-shadow: var(--shadow-sm);
     transition: all var(--transition);
     font-family: var(--font);
     min-width: 140px;
 }
 .draft-btn:hover:not(:disabled) {
-    background: var(--accent-hover);
+    background: #eeece6;
     box-shadow: var(--shadow-md);
 }
 .draft-btn:active:not(:disabled) {
@@ -241,8 +241,31 @@ body {
     transition: transform 0.1s ease;
 }
 .draft-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.35;
     cursor: not-allowed;
+}
+#spinFiveBtn:disabled::after {
+    animation-play-state: paused;
+}
+
+/* 5次按钮反光动效 */
+#spinFiveBtn {
+    position: relative;
+    overflow: hidden;
+    /* background: #ffe8841a; */
+}
+#spinFiveBtn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, #fff8d788 40%, #fff8d788 50%, transparent 60%);
+    transform: translateX(-100%);
+    animation: btnShine 4s ease-in-out infinite;
+}
+@keyframes btnShine {
+    0%     { transform: translateX(-100%); }
+    25% { transform: translateX(100%); }
+    100%   { transform: translateX(100%); }
 }
 
 /* Output Area */
@@ -604,6 +627,37 @@ body {
     padding: 4px 0 8px;
 }
 
+@media (max-width: 400px) {
+    .output-emoji {
+        display: none;
+    }
+    .output-header h3 {
+        font-size: 12px;
+    }
+    .output-count {
+        padding: 2px 6px;
+    }
+    .output-copy-btn,
+    .output-clear-btn {
+        padding: 4px 6px;
+    }
+    .btn-text-full {
+        display: none;
+    }
+    .btn-text-short {
+        display: inline;
+    }
+    .slot-window-wrapper {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 401px) {
+    .btn-text-short {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .body {
         padding-left: 10px;
@@ -620,7 +674,7 @@ body {
     }
 
     .draft-btn {
-        padding: 10px 12px;
+        padding: 6px 12px;
         font-size: 14px;
         min-width: 40px;
     }
